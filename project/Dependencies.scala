@@ -30,7 +30,11 @@ object Dependencies {
 
   val scala212Version = "2.12.13"
   val scala213Version = "2.13.3"
-  val scala3Version = "3.0.0-M3"
+  val scala3Version =
+    System.getProperty("akka.build.scalaVersion", "default") match {
+      case three if three.startsWith("3.0") => three
+      case _                                => "3.0.0-M3"
+    }
 
   val reactiveStreamsVersion = "1.0.3"
 
