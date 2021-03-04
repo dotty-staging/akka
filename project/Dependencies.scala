@@ -7,7 +7,6 @@ package akka
 import sbt._
 import Keys._
 import scala.language.implicitConversions
-import dotty.tools.sbtplugin.DottyPlugin.autoImport.DottyCompatModuleID
 
 object Dependencies {
   import DependencyHelpers._
@@ -104,8 +103,8 @@ object Dependencies {
     val reactiveStreams = "org.reactivestreams" % "reactive-streams" % reactiveStreamsVersion // CC0
 
     // ssl-config
-    val sslConfigCore = DottyCompatModuleID("com.typesafe" %% "ssl-config-core" % sslConfigVersion)
-      .withDottyCompat(getScalaVersion()) // ApacheV2
+    val sslConfigCore = ("com.typesafe" %% "ssl-config-core" % sslConfigVersion)
+      .cross(CrossVersion.for3Use2_13) // ApacheV2
 
     val lmdb = "org.lmdbjava" % "lmdbjava" % "0.7.0" // ApacheV2, OpenLDAP Public License
 
@@ -113,8 +112,8 @@ object Dependencies {
 
     // For Java 8 Conversions
     val java8Compat = Def.setting {
-      DottyCompatModuleID("org.scala-lang.modules" %% "scala-java8-compat" % java8CompatVersion.value)
-        .withDottyCompat(getScalaVersion())
+      ("org.scala-lang.modules" %% "scala-java8-compat" % java8CompatVersion.value)
+        .cross(CrossVersion.for3Use2_13)
     } // Scala License
 
     val aeronDriver = "io.aeron" % "aeron-driver" % aeronVersion // ApacheV2
