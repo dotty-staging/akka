@@ -88,7 +88,7 @@ object AkkaBuild {
   private def allWarnings: Boolean = System.getProperty("akka.allwarnings", "false").toBoolean
 
   final val DefaultScalacOptions = {
-    if (Dependencies.getScalaVersion().startsWith("3.0")) {
+    if (Dependencies.getScalaVersion().startsWith("3.")) {
       Seq(
         "-encoding",
         "UTF-8",
