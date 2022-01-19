@@ -137,7 +137,7 @@ object DnsSettings {
    * INTERNAL API
    */
   @InternalApi private[akka] def parseNameserverAddress(str: String): InetSocketAddress = {
-    val inetSocketAddress(host, port) = str
+    val inetSocketAddress(host, port) = str: @unchecked
     new InetSocketAddress(host, Option(port).fold(DnsFallbackPort)(_.toInt))
   }
 
