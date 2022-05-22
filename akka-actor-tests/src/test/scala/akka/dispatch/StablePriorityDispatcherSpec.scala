@@ -31,7 +31,7 @@ object StablePriorityDispatcherSpec {
         case _: Int             => 101 // Don't care for other integers
         case Result             => Int.MaxValue
         case _                  => throw new RuntimeException() // compiler exhaustiveness check pleaser
-      }: Any => Int))
+      }: (Any => Int)))
 
   class Bounded(@unused settings: ActorSystem.Settings, @unused config: Config)
       extends BoundedStablePriorityMailbox(PriorityGenerator({
@@ -39,7 +39,7 @@ object StablePriorityDispatcherSpec {
         case _: Int             => 101 // Don't care for other integers
         case Result             => Int.MaxValue
         case _                  => throw new RuntimeException() // compiler exhaustiveness check pleaser
-      }: Any => Int), 1000, 10 seconds)
+      }: (Any => Int)), 1000, 10 seconds)
 
 }
 
