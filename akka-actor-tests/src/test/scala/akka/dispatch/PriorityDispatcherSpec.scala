@@ -31,14 +31,14 @@ object PriorityDispatcherSpec {
         case i: Int => i //Reverse order
         case Result => Int.MaxValue
         case _      => throw new RuntimeException() // compiler exhaustiveness check pleaser
-      }: Any => Int))
+      }: (Any => Int)))
 
   class Bounded(@unused settings: ActorSystem.Settings, @unused config: Config)
       extends BoundedPriorityMailbox(PriorityGenerator({
         case i: Int => i //Reverse order
         case Result => Int.MaxValue
         case _      => throw new RuntimeException() // compiler exhaustiveness check pleaser
-      }: Any => Int), 1000, 10 seconds)
+      }: (Any => Int)), 1000, 10 seconds)
 
 }
 
