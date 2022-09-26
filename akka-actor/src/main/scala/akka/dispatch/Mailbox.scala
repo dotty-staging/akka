@@ -55,12 +55,14 @@ private[akka] object Mailbox {
  *
  * INTERNAL API
  */
-private[akka] abstract class Mailbox(val messageQueue: MessageQueue)
+private[akka] abstract class Mailbox(_messageQueue: MessageQueue)
     extends ForkJoinTask[Unit]
     with SystemMessageQueue
     with Runnable {
 
   import Mailbox._
+
+  val messageQueue: MessageQueue = _messageQueue
 
   /*
    * This is needed for actually executing the mailbox, i.e. invoking the
