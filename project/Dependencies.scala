@@ -31,7 +31,11 @@ object Dependencies {
   val scala213Version = "2.13.7"
   // To get the fix for https://github.com/lampepfl/dotty/issues/13106
   // and restored static forwarders
-  val scala3Version = "3.1.1-RC2"
+  val scala3Version = sys.props.get("akka.build.scalaVersion")
+    .getOrElse {
+      System.err.println("Warning: Using default Scala 3 versions!")
+      "3.1.1-RC3"
+    }
   val allScalaVersions = Seq(scala213Version, scala212Version, scala3Version)
 
   val reactiveStreamsVersion = "1.0.3"
