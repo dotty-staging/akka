@@ -96,9 +96,9 @@ object AkkaBuild {
         "-encoding",
         "UTF-8",
         "-feature",
-        "-unchecked",
+        "-unchecked")
         // 'blessed' since 2.13.1
-        "-language:higherKinds")
+        // "-language:higherKinds"
     } else {
       Seq(
         "-encoding",
