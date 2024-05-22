@@ -128,7 +128,7 @@ object ConsistentHash {
    */
   def create[T](nodes: java.lang.Iterable[T], virtualNodesFactor: Int): ConsistentHash[T] = {
     import akka.util.ccompat.JavaConverters._
-    apply(nodes.asScala, virtualNodesFactor)(ClassTag(classOf[Any].asInstanceOf[Class[T]]))
+    apply(nodes.asScala, virtualNodesFactor)(using ClassTag(classOf[Any].asInstanceOf[Class[T]]))
   }
 
   private def concatenateNodeHash(nodeHash: Int, vnode: Int): Int = {
