@@ -29,7 +29,7 @@ class SimpleDnsCache extends Dns with PeriodicCacheCleanup with NoSerializationV
   import SimpleDnsCache._
   private val cacheRef = new AtomicReference(
     new Cache[(String, RequestType), Resolved](
-      immutable.SortedSet()(expiryEntryOrdering()),
+      immutable.SortedSet()(using expiryEntryOrdering()),
       immutable.Map(),
       () => clock()))
 
